@@ -1,0 +1,2 @@
+# slimscroll
+jQuery-slimscroll-extend
