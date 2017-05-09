@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<script type="text/javascript" src="./jquery.js"></script>
+	<script type="text/javascript" src="./slimscroll.js"></script>
+</head>
+<body style="margin:20px 50px;">
+	<div style="width:100px;">
+		<div id="srcoller" style="width:100px;height:300px;border:1px solid #ccc;box-sizing: border-box;">
+			<p>asdgasdg1</p>
+			<p>asdgasdg2</p>
+			<p>asdgasdg3</p>
+			<p>asdgasdg4</p>
+			<p>asdgasdg5</p>
+			<p>asdgasdg6</p>
+			<p>asdgasdg7</p>
+			<p>asdgasdg8</p>
+			<p>asdgasdg9</p>
+			<p>asdgasdg10</p>
+			<p>asdgasdg11</p>
+			<p>asdgasdg12</p>
+			<p>asdgasdg13</p>
+			<p>asdgasdg14</p>
+			<p>asdgasdg15</p>
+			<p>asdgasdg16</p>
+			<p>asdgasdg17</p>
+			<p>asdgasdg18</p>
+			<p>asdgasdg19</p>
+		</div>
+	</div>
+<script type="text/javascript">
+	$(function(){
+		var scrollObj = $('#srcoller').slimscroll({height:'300px'});
+        
+        var isLock = false;    //加锁
+		scrollObj.bind("slimscroll", function(e, pos){
+            if(isLock){
+                return;
+            }
+            
+		    if(pos == 'bottom'){ 
+                console.log("Reached " + pos);
+                
+                isLock = true;
+		    	setTimeout(function(){scrollObj.slimscroll({scrollTo : '0px'});isLock = false}, 1000);
+		    }else{
+		    	console.log("Reached " + pos);
+                
+                isLock = true;
+                setTimeout(function(){
+                    /*scrollObj.slimscroll({scrollTo : $('#srcoller').outerHeight()});*/;
+                    scrollObj.parent('.slimScrollDiv').children('.slimScrollBar').mousedown().css({'bottom':'0px','top':'initial'})
+                    isLock = false
+                }, 1000);
+            }
+		});
+	});
+</script>
+</body>
+</html>
